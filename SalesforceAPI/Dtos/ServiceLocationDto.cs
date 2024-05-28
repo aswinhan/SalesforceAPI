@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
@@ -12,13 +13,15 @@ namespace SalesforceAPI.Dtos
         public bool Facility_License_if_applicable__c { get; set; }
         public DateTime? Facility_License_Expiration_if_applicab__c { get; set; }
         public string? Facility_License_Number_if_applicable__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public FacilityLicenseStatusIfApplicableCEnum? Facility_License_Status_if_applicable__c { get; set; }
         public string? Hours_of_Operation__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public AccomodationsAccessibilityCEnum? Accomodations_Accessibility__c { get; set; }
         public string? Accomodations_Accessibility_Other__c { get; set; }
         public bool Licensed_Facility__c { get; set; }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum FacilityLicenseStatusIfApplicableCEnum
         {
             [EnumMember(Value = "Active")]
@@ -26,8 +29,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "Expired")]
             ExpiredEnum = 1
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum AccomodationsAccessibilityCEnum
         {
             [EnumMember(Value = "Accessible Alarms")]

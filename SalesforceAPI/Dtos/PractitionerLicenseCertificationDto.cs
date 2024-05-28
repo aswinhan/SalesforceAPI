@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace SalesforceAPI.Dtos
@@ -7,14 +8,24 @@ namespace SalesforceAPI.Dtos
     {
         public string? Credentialing_Profile_Id__c { get; set; }
         public string? RecordTypeId { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public LicenseCertificationTypeCEnum? LicenseCertification_Type__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public LicenseTypesLARACEnum? License_Types_LARA__c { get; set; }
         public string? Other_License_Type__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public BoardCertificationsCEnum? Board_Certifications__c { get; set; }
         public string? Other_Board_Certification__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public NursingCertificationsCEnum? Nursing_Certifications__c { get; set; }
         public DateTime Expiration_Date__c { get; set; }
         public bool File_Uploaded__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public LicenseCertificationStatusCEnum? LicenseCertification_Status__c { get; set; }
 
         public enum LicenseCertificationTypeCEnum
@@ -75,8 +86,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "Psychiatry")]
             PsychiatryEnum = 22
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum BoardCertificationsCEnum
         {
             [EnumMember(Value = "MCBAP - MI Certification Board for Addiction Professionals")]
@@ -120,8 +129,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "Other")]
             OtherEnum = 19
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum NursingCertificationsCEnum
         {
             [EnumMember(Value = "Adult-Gerontology Primary Care Nurse Practitioner")]
@@ -495,8 +502,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "WHNP-BC - Women’s Health Care Nurse Practitioner")]
             WHNPBCWomensHealthCareNursePractitionerEnum = 184
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum LicenseCertificationStatusCEnum
         {
             [EnumMember(Value = "Active")]

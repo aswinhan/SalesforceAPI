@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace SalesforceAPI.Dtos
@@ -7,14 +8,20 @@ namespace SalesforceAPI.Dtos
     {
         public string? Credentialing_Profile__c { get; set; }
         public string? Name { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public PSVStatusCEnum? PSV_Status__c { get; set; }
         public DateTime Creation_Date__c { get; set; }
         public DateTime Completion_Date__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public VerifierSCredentialingOrganizationCEnum? Verifier_s_Credentialing_Organization__c { get; set; }
         public string? Other_Accred__c { get; set; }
         public string? Provider_Name__c { get; set; }
         public string? Primary_Source_Verifier__c { get; set; }
         public string? OwnerId { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public LARALicenseCEnum? LARA_License__c { get; set; }
         public bool MDHHS_Sanctioned_Provider_Check__c { get; set; }
         public bool Office_of_Inspector_General_Check__c { get; set; }
@@ -32,8 +39,6 @@ namespace SalesforceAPI.Dtos
         public bool MCBAP_Verification__c { get; set; }
         public bool MI_Public_Sex_Offender_Registry_Check__c { get; set; }
         public bool National_Sex_Offender_Registry_Check__c { get; set; }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum PSVStatusCEnum
         {
             [EnumMember(Value = "In-Progress")]
@@ -47,8 +52,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "CVO In-Progress")]
             CVOInProgressEnum = 4
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum VerifierSCredentialingOrganizationCEnum
         {
             [EnumMember(Value = "COA")]
@@ -66,8 +69,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "None")]
             NoneEnum = 6
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum LARALicenseCEnum
         {
             [EnumMember(Value = "Acupuncture")]

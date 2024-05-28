@@ -1,5 +1,6 @@
-﻿using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace SalesforceAPI.Dtos
 {
@@ -9,11 +10,11 @@ namespace SalesforceAPI.Dtos
         public string? Contact_First_Name__c { get; set; }
         public string? Contact_Last_Name__c { get; set; }
         public string? Contact_Email__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public ContactPersonRoleCEnum? Contact_Person_Role__c { get; set; }
         public string? Contact_Phone__c { get; set; }
         public bool? Primary_Contact__c { get; set; }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum ContactPersonRoleCEnum
         {
             [EnumMember(Value = "Primary Contact")]

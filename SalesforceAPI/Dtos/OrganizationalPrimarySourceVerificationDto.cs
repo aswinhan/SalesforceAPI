@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
@@ -7,15 +8,21 @@ namespace SalesforceAPI.Dtos
     public class OrganizationalPrimarySourceVerificationDto
     {
         public string? Name { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public PSVStatusCEnum? PSV_Status__c { get; set; }
         public DateTime Creation_Date__c { get; set; }
         public DateTime Completion_Date__c { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public VerifierSCredentialingOrganizationCEnum? Verifier_s_Credentialing_Organization__c { get; set; }
         public string? Other_Accred__c { get; set; }
         public string? Provider_Name__c { get; set; }
         public string? Primary_Source_Verifier__c { get; set; }
         public string? Credentialing_Profile__c { get; set; }
         public string? OwnerId { get; set; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public LARALicenseCEnum? LARA_License__c { get; set; }
         public bool? MDHHS_Sanctioned_Provider_Check__c { get; set; }
         public bool? Office_of_Inspector_General_Check__c { get; set; }
@@ -25,7 +32,6 @@ namespace SalesforceAPI.Dtos
         public bool? At_least_five_year_history_of_organizati__c { get; set; }
         public bool? On_Site_Quality_Assessment_Recredential__c { get; set; }
 
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum PSVStatusCEnum
         {
             [EnumMember(Value = "In-Progress")]
@@ -39,8 +45,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "CVO In-Progress")]
             CVOInProgressEnum = 4
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum VerifierSCredentialingOrganizationCEnum
         {
             [EnumMember(Value = "COA")]
@@ -58,8 +62,6 @@ namespace SalesforceAPI.Dtos
             [EnumMember(Value = "None")]
             NoneEnum = 6
         }
-
-        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public enum LARALicenseCEnum
         {
             [EnumMember(Value = "Acupuncture")]
